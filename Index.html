@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>For You ❤️</title>
+<style>
+body{margin:0;font-family:Arial;background:linear-gradient(135deg,#ff8fb1,#ffd1dc);display:flex;justify-content:center;align-items:center;min-height:100vh;overflow:hidden}
+.card{width:min(92%,760px);background:rgba(255,255,255,.18);backdrop-filter:blur(12px);border-radius:20px;padding:24px;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.scene{perspective:1000px;display:flex;justify-content:center}
+.env{width:220px;height:140px;position:relative;cursor:pointer;transform-style:preserve-3d}
+.base{position:absolute;bottom:0;width:100%;height:90px;background:#f6b0c0;border-radius:0 0 10px 10px}
+.flap{position:absolute;top:0;width:0;height:0;border-left:110px solid transparent;border-right:110px solid transparent;border-top:70px solid #f39ab3;transform-origin:top;transition:1s}
+.open .flap{transform:rotateX(180deg)}
+h2{text-align:center}
+#letter{display:none;max-height:420px;overflow-y:auto;white-space:pre-wrap;line-height:1.8;font-size:18px;padding:8px;scroll-behavior:smooth}
+.cursor{display:inline-block;width:2px;height:20px;background:#fff;animation:b .8s infinite}@keyframes b{50%{opacity:0}}
+.heart{position:fixed;bottom:-20px;animation:f 6s linear forwards}@keyframes f{to{transform:translateY(-120vh);opacity:0}}
+</style></head><body>
+<div class='card'><div class='scene'><div class='env' id='env'><div class='flap'></div><div class='base'></div></div></div>
+<h2 id='t'>Click the Envelope</h2>
+<div id='letter'><span id='text'></span><span class='cursor'></span></div></div>
+<script>
+const msg=`Hi, good day! ❤️
+
+Gusto ko lang sabihin na I'm really happy and thankful na nakilala kita...
+
+I know this might come as a surprise, but I just want to be honest with you. With a chance or even without one, gusto kitang i-pursue. I genuinely want to know you more.
+
+Hindi man ako perfect, pero I'll always do my best to show you the best version of myself.
+
+Ayoko kang ma-pressure. I just wanted to be honest about my feelings. Whatever your answer is, I'll respect it.
+
+Take care palagi. ❤️`;
+env.onclick=()=>{env.classList.add('open');setTimeout(start,900);}
+function start(){env.style.display='none';t.textContent='A Letter For You ❤️';letter.style.display='block';let i=0;(function ty(){if(i<msg.length){text.textContent+=msg[i++];letter.scrollTop=letter.scrollHeight;setTimeout(ty,25)}else{document.querySelector('.cursor').remove();setInterval(heart,220)}})()}
+function heart(){let h=document.createElement('div');h.className='heart';h.textContent=Math.random()>.5?'❤️':'💖';h.style.left=Math.random()*100+'vw';h.style.fontSize=(18+Math.random()*20)+'px';document.body.appendChild(h);setTimeout(()=>h.remove(),6000)}
+</script></body></html>
